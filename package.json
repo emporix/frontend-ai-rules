@@ -1,0 +1,23 @@
+{
+  "name": "frontend-ai-rules",
+  "version": "1.0.0",
+  "description": "Generic AI agent rules for Emporix frontend projects (Cursor, Copilot, Claude Code)",
+  "files": [
+    "cursor",
+    "copilot",
+    "claude",
+    "scripts"
+  ],
+  "scripts": {
+    "sync": "node scripts/sync-rules.js"
+  },
+  "bin": {
+    "sync-frontend-ai-rules": "scripts/sync-rules.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emporix/frontend-ai-rules.git"
+  },
+  "license": "UNLICENSED",
+  "private": true
+}
