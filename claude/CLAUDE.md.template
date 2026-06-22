@@ -36,6 +36,13 @@ These rules are maintained centrally in the [frontend-ai-rules](https://github.c
 | `i18n.mdc` | `i18n.instructions.md` | `i18n.md` | Translations |
 | `primereact.mdc` | `primereact.instructions.md` | `primereact.md` | PrimeReact widgets (if applicable) |
 | `module-federation.mdc` | `module-federation.instructions.md` | `module-federation.md` | Module Federation (if applicable) |
+| `contributing-global-rules.mdc` | `contributing-global-rules.instructions.md` | `contributing-global-rules.md` | After feature work / upstream rule proposals |
+
+## Workflow Skills (from frontend-ai-rules)
+
+| Cursor | Copilot | Claude Code | Purpose |
+|--------|---------|-------------|---------|
+| `.cursor/skills/contribute-global-rule/` | `.github/skills/contribute-global-rule/` | `.claude/skills/contribute-global-rule/` | Open PR in frontend-ai-rules after approved lesson |
 
 ## Project-Specific Rules
 

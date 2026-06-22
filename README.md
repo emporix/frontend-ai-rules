@@ -127,6 +127,40 @@ Cursor combines the global `.cursorrules` index with local `.cursor/rules/*.mdc`
 
 ---
 
+## Contributing Improvements Back
+
+When feature work surfaces **reusable** patterns (not project-specific domain logic), agents can propose updates to [frontend-ai-rules](https://github.com/emporix/frontend-ai-rules).
+
+### How it works
+
+1. After a task is done, the agent may evaluate lessons learned against **`contributing-global-rules`**.
+2. If a pattern applies across Emporix frontends, the agent shows a structured proposal and asks whether to open a PR upstream.
+3. If you approve, the agent follows the synced workflow skill:
+   - Cursor: `.cursor/skills/contribute-global-rule/SKILL.md`
+   - Copilot: `.github/skills/contribute-global-rule/SKILL.md`
+   - Claude Code: `.claude/skills/contribute-global-rule/SKILL.md`
+
+### Global vs project-specific
+
+| Contribute to `frontend-ai-rules` | Keep local (project-specific rules) |
+|-----------------------------------|-------------------------------------|
+| Stack, helpers, testing, API, UI patterns | Domain models, one-off APIs, repo layout |
+| Gaps in existing generic rules | Features unique to one product |
+
+### PR requirements
+
+Every PR to `frontend-ai-rules` **must update all three rule formats** together:
+
+- `cursor/rules/<name>.mdc`
+- `copilot/instructions/<name>.instructions.md`
+- `claude/rules/<name>.md`
+
+New rules also require a row in all three index templates (`cursorrules.template`, `copilot-instructions.md`, `CLAUDE.md.template`). The **`contribute-global-rule`** skill includes a pre-commit checklist.
+
+Rule-only PRs do not require a Jira ticket. Use branches like `feature/rules-improve-api-error-handling`.
+
+---
+
 ## How to Add These Rules Manually (Approach 2)
 
 Use this when you cannot add a git `devDependencies` entry (e.g. offline mirrors, custom tooling).

@@ -42,10 +42,13 @@ function copyDir(srcDir, destDir) {
 const tasks = [
   { label: 'Cursor index', src: 'cursor/cursorrules.template', dest: '.cursorrules' },
   { label: 'Cursor rules', src: 'cursor/rules', dest: '.cursor/rules', dir: true },
+  { label: 'Cursor skills', src: 'cursor/skills', dest: '.cursor/skills', dir: true },
   { label: 'Copilot index', src: 'copilot/copilot-instructions.md', dest: '.github/copilot-instructions.md' },
   { label: 'Copilot instructions', src: 'copilot/instructions', dest: '.github/instructions', dir: true },
+  { label: 'Copilot skills', src: 'copilot/skills', dest: '.github/skills', dir: true },
   { label: 'Claude Code index', src: 'claude/CLAUDE.md.template', dest: '.claude/CLAUDE.md' },
   { label: 'Claude Code rules', src: 'claude/rules', dest: '.claude/rules', dir: true },
+  { label: 'Claude Code skills', src: 'claude/skills', dest: '.claude/skills', dir: true },
 ];
 
 let synced = 0;
@@ -69,3 +72,4 @@ for (const task of tasks) {
 
 console.log(`\n✅ Global AI rules synced (${synced} file(s) total).`);
 console.log('   Project-specific rules: add files under .cursor/rules/ with unique names.');
+console.log('   Project-specific skills: add under .cursor/skills/ with unique names.');
