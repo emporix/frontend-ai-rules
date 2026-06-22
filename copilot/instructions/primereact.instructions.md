@@ -4,7 +4,7 @@ applyTo: "src/**/*.tsx"
 
 # PrimeReact
 
-Skip if the project does not use PrimeReact.
+Skip this rule if the project does not use PrimeReact.
 
 ## Menus
 

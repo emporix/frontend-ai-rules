@@ -31,6 +31,8 @@ Every Cursor rule has a matching Copilot and Claude Code file:
 | `00-core.mdc` | `00-core.instructions.md` | `00-core.md` | Always |
 | `ui-components.mdc` | `ui-components.instructions.md` | `ui-components.md` | Components / pages |
 | `testing.mdc` | `testing.instructions.md` | `testing.md` | Test files |
+| `api-data.mdc` | `api-data.instructions.md` | `api-data.md` | API / service layer |
+| `performance.mdc` | `performance.instructions.md` | `performance.md` | Component performance |
 | `git-workflow.mdc` | `git-workflow.instructions.md` | `git-workflow.md` | Git / commits |
 | `emporix-component-library.mdc` | `emporix-component-library.instructions.md` | `emporix-component-library.md` | TSX files |
 | `i18n.mdc` | `i18n.instructions.md` | `i18n.md` | Translations |
@@ -46,6 +48,7 @@ Every Cursor rule has a matching Copilot and Claude Code file:
 | Testing | Vitest, Testing Library, colocated tests |
 | UI | PrimeReact (optional), `@emporix/component-library` |
 | i18n | react-i18next |
+| API layer | REST services in `src/api/` or `src/services/` (optional) |
 | Micro-frontends | Module Federation patterns (optional) |
 
 ---

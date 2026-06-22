@@ -42,6 +42,8 @@ Read the project's `package.json` and existing code before introducing new depen
 ## Code Style
 
 - Functional components with hooks; default export for components, named export for utilities/types.
+- **Prefer arrow functions** for callbacks, handlers, helpers, and utilities (`const fn = () => {}`). Use `function` only when hoisting is required.
+- **Destructure props** at the top of components; avoid `props.xxx` in the component body.
 - Avoid `React.FC<Props>` — type props on the function parameter directly.
 - TypeScript strict; avoid `any`.
 - Props interfaces: mark all fields `readonly`.
@@ -51,6 +53,27 @@ Read the project's `package.json` and existing code before introducing new depen
 - No non-null assertion (`!`) — use optional chaining and guards.
 - No inline styles; use CSS Modules.
 - Avoid barrel `index.ts` exports for components — prefer direct imports unless the project already uses barrels.
+- Follow ESLint and Prettier (or project equivalents).
+
+## Comments
+
+- Do not add redundant comments that restate what the code already shows.
+- Comment only when intent, algorithm, or business rules would not be clear at first read.
+- Prefer clearer naming and small functions over long comments.
+
+## State Management
+
+- Use local state (`useState`) for component UI state.
+- Prefer `useState` over `useReducer` for simple state.
+- Use context or global state for shared data — keep scope minimal.
+- Move static data that does not depend on props/state outside the component.
+
+## Error Handling
+
+- Use try/catch for async operations (API calls, file uploads, mutations).
+- Do not swallow errors — log with `console.error` and surface user-facing feedback (e.g. toasts).
+- Handle HTTP error status (4xx, 5xx) and network failures in the API layer — see **`api-data`** rule.
+- Use React error boundaries for unexpected render failures where the project supports them.
 
 ## Business Logic
 
@@ -224,3 +247,33 @@ npm run build        # or build:dev / build:lib — check package.json
 - Large monolithic components — extract when a section is self-contained
 - Unnecessary `useMemo` / `useCallback` for static or trivial values
 - Adding dependencies without checking if the project or `@emporix/component-library` already covers the need
+- Deep prop drilling — use context or composition instead
+- Mixing styling approaches inconsistently
+- Keeping unused components or dead code
+- Component APIs with too many props — split or group props
+- Raw `fetch` / API logic inside UI components — use **`api-data`** layer
+- Redundant or obvious comments
+- `function` declarations for helpers when arrow functions work
+- Overly complex callback chains — prefer simpler patterns or refs
+- Unnecessary `useImperativeHandle` when `forwardRef` is enough
+
+## Prefer
+
+- Arrow functions for callbacks, handlers, helpers, and utilities
+- Destructuring props at the top of components
+- Component composition over inheritance
+- Pure, immutable helpers with immediate unit tests (see **`testing`**)
+- Static data outside components when it does not depend on props/state
+- Incremental refactors — small, verifiable steps
+- Specific user-facing messages over generic ones
+- Regular removal of unused code
+- Comments only when logic might not be clear at first read
+
+## Migration / Refactoring
+
+When refactoring existing code:
+
+1. Identify logic that belongs in helpers and move it.
+2. Replace inline logic with helper calls.
+3. Add or update helper tests in the same change.
+4. Run lint, typecheck, tests, and build to verify behavior.

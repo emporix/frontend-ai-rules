@@ -16,6 +16,7 @@ React + TypeScript + Vite frontend application.
 | `src/components/{feature}/` | Feature UI components |
 | `src/models/` | Domain types |
 | `src/helpers/` | Pure business logic — **never mutate models in components** |
+| `src/api/` or `src/services/` | REST API / service layer (if applicable) |
 | `src/context/` | Data providers |
 | `src/translations/{locale}/` | i18n keys (react-i18next) |
 
@@ -28,6 +29,8 @@ These rules are maintained centrally in the [frontend-ai-rules](https://github.c
 | `00-core.mdc` | `00-core.instructions.md` | `00-core.md` | Always — stack, helpers, quality gates, agent priorities |
 | `ui-components.mdc` | `ui-components.instructions.md` | `ui-components.md` | Component and page work |
 | `testing.mdc` | `testing.instructions.md` | `testing.md` | Test files |
+| `api-data.mdc` | `api-data.instructions.md` | `api-data.md` | API / service layer |
+| `performance.mdc` | `performance.instructions.md` | `performance.md` | Component performance |
 | `git-workflow.mdc` | `git-workflow.instructions.md` | `git-workflow.md` | Commits / branches |
 | `emporix-component-library.mdc` | `emporix-component-library.instructions.md` | `emporix-component-library.md` | Shared UI primitives |
 | `i18n.mdc` | `i18n.instructions.md` | `i18n.md` | Translations |

@@ -15,7 +15,7 @@ helper.helpers.test.ts
 
 ## Helper Tests
 
-Required for every pure helper function:
+Required for every pure helper function. **Write or update tests in the same change** — do not commit new or modified helpers without tests.
 
 ```typescript
 describe('helperFunction', () => {
@@ -44,12 +44,14 @@ Cover: happy path, null/undefined properties, empty strings, boundary indices.
 ## Run
 
 ```bash
-npm run test
-npx vitest run path/to/file
+npm run test                    # all
+npx vitest run path/to/file     # single file
 ```
+
+Check `package.json` for project-specific test scripts (e.g. `test:watch`, `test:coverage`).
 
 ## When to Add Tests
 
-- **Always** for new or changed helpers
+- **Always** for new or changed helpers — same commit/PR as the helper change
 - For components: when behavior is non-trivial (interactions, conditional rendering, error states)
 - Skip tests that only assert rendering without meaningful behavior

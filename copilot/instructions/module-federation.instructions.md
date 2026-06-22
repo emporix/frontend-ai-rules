@@ -4,7 +4,7 @@ applyTo: "**/RemoteComponent.tsx,**/vite.config.ts,**/main.tsx"
 
 # Module Federation
 
-Skip if the project is not a federated micro-frontend.
+Skip this rule if the project is not a federated micro-frontend.
 
 ## Vite Config
 

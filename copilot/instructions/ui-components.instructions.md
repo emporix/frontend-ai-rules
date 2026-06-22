@@ -35,25 +35,36 @@ type ActionConfirmDialogProps = {
   readonly children?: React.ReactNode
 }
 
-const ActionConfirmDialog = (props: Readonly<ActionConfirmDialogProps>) => {
+const ActionConfirmDialog = ({
+  isOpen,
+  messageKey,
+  title,
+  acceptLabel,
+  rejectLabel,
+  isLoading,
+  isAcceptDisabled,
+  onAccept,
+  onReject,
+  children,
+}: Readonly<ActionConfirmDialogProps>) => {
   const { t } = useTranslation()
 
   return (
-    <Dialog visible={props.isOpen} onHide={props.onReject} header={props.title}>
-      {props.messageKey ? (
-        <div className={styles.content}>{t(props.messageKey)}</div>
+    <Dialog visible={isOpen} onHide={onReject} header={title}>
+      {messageKey ? (
+        <div className={styles.content}>{t(messageKey)}</div>
       ) : null}
-      {props.children}
+      {children}
       <div className={styles.buttonContainer}>
-        <SecondaryButton onClick={props.onReject} disabled={props.isLoading}>
-          {props.rejectLabel}
+        <SecondaryButton onClick={onReject} disabled={isLoading}>
+          {rejectLabel}
         </SecondaryButton>
         <PrimaryButton
-          onClick={props.onAccept}
-          loading={props.isLoading}
-          disabled={props.isLoading || (props.isAcceptDisabled ?? false)}
+          onClick={onAccept}
+          loading={isLoading}
+          disabled={isLoading || (isAcceptDisabled ?? false)}
         >
-          {props.acceptLabel}
+          {acceptLabel}
         </PrimaryButton>
       </div>
     </Dialog>
@@ -163,8 +174,10 @@ Extend with feature-specific readonly fields. Never mutate props.
 
 - CSS Modules with descriptive, BEM-like class names
 - Use design tokens / CSS variables when the project defines them
+- Compose class names with template literals: `` `${styles.base} ${className ?? ''}` ``
 - Interactive buttons: reset browser defaults, add `:focus-visible` outline
 - Convert clickable divs to `<button type="button">` with style reset
+- Prefer `useState` over `useReducer` for simple local UI state
 
 ```scss
 // ActionConfirmDialog.module.scss
@@ -194,6 +207,7 @@ Extend with feature-specific readonly fields. Never mutate props.
 
 | Do | Don't |
 |----|-------|
+| Destructure props at the top of the component | Use `props.xxx` throughout the body |
 | `readonly` on every prop | `props.order.items.push(…)` |
 | Local state for UI only (`isDialogOpen`, `isLoading`) | Duplicate server/model data in `useState` |
 | Inject async work via `onDelete: () => Promise<void>` | Call `fetch('/api/…')` directly inside a shared dialog |
@@ -215,5 +229,17 @@ title="Are you sure?"
 | Semantic HTML (`nav`, `main`, `label`); visible `:focus-visible` | Missing `aria-label` when there is no visible text |
 
 Translation keys and `useTranslation()` — see **`i18n`** rule. Buttons, toasts, and inputs — see **`emporix-component-library`** rule. PrimeReact widgets — see **`primereact`** rule.
+
+## Refs and event handling
+
+- Prefer `forwardRef` over custom callback-based “ref” props when exposing a child API.
+- Use type guards when reading refs; avoid untyped `ref.current` access without checks.
+- Prefer direct ref control over extra state used only to coordinate parent/child.
+- Use `stopPropagation` when nested handlers must not trigger parents (menus, row actions).
+- Track open/active state for menus and popovers; reset in `onHide` / close handlers.
+
+Performance patterns (memoization, lazy loading) — see **`performance`** rule.
+
+## Storybook
 
 When the project uses Storybook, new or changed components need `*.stories.tsx` covering default, loading, error, and edge-case states.
