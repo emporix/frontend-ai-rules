@@ -4,8 +4,6 @@ Organization-wide coding standards, architectural guidelines, and tech-stack pre
 
 By linking this repository to your project, AI agents (**Cursor**, **GitHub Copilot**, and **Claude Code**) align code generation with our engineering standards.
 
-Related ticket: [COP-5740](https://emporix.atlassian.net/browse/COP-5740).
-
 ## Contents
 
 ```
@@ -63,11 +61,11 @@ Open your project's `package.json` and add this repository to `devDependencies`:
 
 ```json
 "devDependencies": {
-  "frontend-ai-rules": "git+https://github.com/emporix/frontend-ai-rules.git#main"
+  "frontend-ai-rules": "git+https://github.com/emporix/frontend-ai-rules.git#master"
 }
 ```
 
-> **Tip:** Replace `#main` with a specific tag or commit SHA (e.g. `#v1.0.0`) to lock the rule version for stability.
+> **Tip:** Replace `#master` with a specific tag or commit SHA (e.g. `#v1.0.0`) to lock the rule version for stability.
 
 ### Step 2: Automate the sync script
 
@@ -170,7 +168,7 @@ When customizing manually, `.cursorrules`, `.github/copilot-instructions.md`, an
 
 When generic rules change in this repo:
 
-1. Bump the git ref in your `devDependencies` (or run `npm install` on `#main`).
+1. Bump the git ref in your `devDependencies` (or run `npm install` on `#master`).
 2. The `postinstall` script re-syncs all agent files.
 3. Reconcile any project-specific rules that extend the generic set.
 
