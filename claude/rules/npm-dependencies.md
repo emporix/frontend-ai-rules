@@ -1,5 +1,8 @@
 ---
-paths: package.json, yarn.lock, package-lock.json
+paths:
+  - "package.json"
+  - "yarn.lock"
+  - "package-lock.json"
 ---
 
 # npm dependencies
