@@ -1,0 +1,17 @@
+---
+description: Prefer @emporix/api-calls methods before custom API requests
+alwaysApply: true
+---
+
+# API Requests
+
+When adding, changing, or reviewing API requests, first check whether the endpoint is already implemented in the `@emporix/api-calls` library.
+
+- If a matching method exists in `@emporix/api-calls`, pause and ask the user whether they want to use that library method instead of a custom API call.
+- If the user agrees, use the library method.
+- If the user declines, continue with the custom API call approach.
+- If no matching method exists in `@emporix/api-calls`, proceed with the custom API call approach.
+
+Example prompt to the user:
+
+`I found that this endpoint appears to be available in @emporix/api-calls. Would you like me to use that library method instead of keeping a custom API call? If not, I can continue with the custom call implementation.`
