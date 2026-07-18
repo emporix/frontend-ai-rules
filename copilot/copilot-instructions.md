@@ -50,7 +50,8 @@ These rules are maintained centrally in the [frontend-ai-rules](https://github.c
 <!-- CUSTOMIZE: List rules added locally for this project -->
 | File | When loaded |
 |------|-------------|
-| _(add project rules here)_ | |
+| `md-extension-migration.instructions.md` | Migration work for MD→md-extensions remote extraction |
+| `extension-module-template.instructions.md` | Local extension module overrides and migration patterns |
 
 <!-- CUSTOMIZE: Replace KEY with your Jira project key -->
 **Git:** `{feature|fix|release}/{KEY}-###-kebab-description` branches, `{KEY}-### Sentence case description` commits — details in `git-workflow`.
