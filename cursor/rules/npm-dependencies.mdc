@@ -1,6 +1,6 @@
 ---
 description: Use npm registry versions for published Emporix packages (not git URLs or local file: links)
-globs: package.json,yarn.lock,package-lock.json
+globs: **/package.json,**/yarn.lock,**/package-lock.json
 alwaysApply: false
 ---
 

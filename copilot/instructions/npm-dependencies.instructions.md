@@ -1,5 +1,5 @@
 ---
-applyTo: "package.json,yarn.lock,package-lock.json"
+applyTo: "**/package.json,**/yarn.lock,**/package-lock.json"
 ---
 
 # npm dependencies
