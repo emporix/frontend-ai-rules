@@ -58,4 +58,5 @@ Git dependencies cause problems in CI (SSH auth, missing `prepare` builds, slowe
 ## Lockfile
 
 - Commit `yarn.lock` or `package-lock.json` with the npm resolution (integrity hash).
-- For git `devDependencies`, ensure `resolved` URLs use **HTTPS**, not SSH, so CI can fetch without deploy keys.
+- Declare git `devDependencies` with `git+https://` in `package.json` (never `git+ssh://`).
+- Do not hand-edit lockfile `resolved` from `git+ssh://` to HTTPS. Local git `url.insteadOf` (common with GitHub SSH) rewrites it back on the next install. If CI `npm ci` fails for missing SSH keys, fix git config or CI credentials rather than a one-off lockfile edit.
