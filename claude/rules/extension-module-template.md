@@ -1,8 +1,11 @@
 ---
-description: Extension module template — overrides and project-only patterns
-globs: "**/RemoteComponent.tsx,**/vite.config.ts,**/AppState.model.ts,**/src/**"
-alwaysApply: true
+paths:
+  - "**/RemoteComponent.tsx"
+  - "**/vite.config.ts"
+  - "**/AppState.model.ts"
+  - "**/src/**"
 ---
+
 
 # Extension Module Template
 

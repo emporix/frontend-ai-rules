@@ -2,15 +2,27 @@
 applyTo: "**/RemoteComponent.tsx,**/vite.config.ts,**/AppState.model.ts,**/src/**"
 ---
 
+
 # MD Extension Migration (remote)
 
 Playbook: `docs/MODULE_MIGRATION_PLAYBOOK.md` (§11–§12 for derived remotes).  
 **Registry (update every migration):** `docs/MIGRATED_MODULES.md`.  
 Copy inventory: `docs/REUSABLE_FROM_USERS_AND_GROUPS.md` (Tier 1 from all playbook-aligned remotes).  
+**PrimeReact → CL lookup:** `docs/CL_WIDGET_STATUS.md`.  
 **Skill (canonical):** `.github/skills/md-module-extraction/` (also `.cursor/skills/` / `.claude/skills/`).  
 **Host wiring:** `management-dashboard/.github/instructions/federated-module-wiring.instructions.md` (not this file).
 
-**Scaffold:** clone [md-module-template](https://github.com/emporix/md-module-template) branch **`md-module-migration`**, absorb into `md-extensions/{kebab}/` (`rm -rf .git`). Align Tier 1 with **playbook-aligned remotes** in `MIGRATED_MODULES.md` (not U&G alone; not `products`; not template `master`).
+**Folder scaffold (required):** clone [md-module-template](https://github.com/emporix/md-module-template/tree/md-module-migration) branch **`md-module-migration`**:
+
+```bash
+git clone -b md-module-migration --single-branch \
+  https://github.com/emporix/md-module-template.git {kebab}
+rm -rf {kebab}/.git
+```
+
+Do **not** `cp -R` / rsync `users-and-groups`, `brands`, `returns`, or template `master`.
+
+**Tier 1 copy:** playbook-aligned remotes in `MIGRATED_MODULES.md` — not U&G alone, not `products`, not template `master`. U&G is a reference implementation, not the scaffold source.
 
 ## Federation
 
@@ -42,12 +54,12 @@ ToastProvider → DashboardProvider → PermissionsProvider → ConfigurationPro
 
 ## UI policy
 
-- Primitives: `@emporix/component-library` only (CL ≥ 2.0.0 bundles Pattern B Prime CSS).
+- Primitives: `@emporix/component-library` only (CL ≥ 2.0.0 bundles Pattern B Prime CSS). Look up each MD `primereact` import in `docs/CL_WIDGET_STATUS.md` — never add `primereact` to the remote.
 - Copy layout composites from prior playbook-aligned remotes `components/shared/` (HeaderSection, SectionBox, FormGrid, lean InputField, …).
 - Prefer CL ≥ 2.2.0 for `ConfirmBox`, `BackButton`, `DateValue`, `ProgressSpinner` — **import directly**; delete local duplicates. Thin wrappers only when app deps are required (i18n / languages / config), same as `LocalizedInput`.
 - Before copying a shared UI piece already present in a prior remote, **ask the user** whether to migrate it to CL (`migrate-to-component-library` skill) instead of another local copy.
 - **SCSS Modules** for feature UI — avoid global / unscoped styles that MD global CSS can override (or that leak into the host). Minimal `index.css` shell only; no inline styles.
-- **Never** copy MD `InputField` (ProductDataProvider). Copy lean `InputField` from a prior remote.
+- **Never** copy MD `InputField` (ProductDataProvider). Prefer CL built-in `label` / `error` props; use `FieldLabel` only when the child has no label API. Copy lean `InputField` from a prior remote only if still needed.
 - No `primereact` / `primeicons` deps or CSS in the remote — only `@emporix/component-library/styles` at entry.
 
 ## API
