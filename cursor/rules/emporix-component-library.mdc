@@ -50,3 +50,24 @@ Wrap the app (or federated entry) with `ToastProvider` once.
 ## Loading States
 
 `PrimaryButton` supports a `loading` prop — use it instead of manual spinner + disabled logic where possible.
+
+## Dropdown in Dialog
+
+Library `Dropdown` overlays are portaled to `document.body` at z-index 1000, so they stack under PrimeReact dialog masks (modal layer ~1100+).
+
+When a `Dropdown` is inside a PrimeReact `Dialog`, pass `panelClassName` with a z-index above dialog masks (e.g. 12000). Use enough selector weight to override the library panel class (`z-index: 1000`).
+
+```scss
+:global(body) .dropdownPanel {
+  z-index: 12000;
+}
+```
+
+```typescript
+<Dropdown
+  options={options}
+  value={value}
+  onChange={onChange}
+  panelClassName={styles.dropdownPanel}
+/>
+```
